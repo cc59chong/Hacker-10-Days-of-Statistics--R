@@ -1,4 +1,49 @@
-# Enter your code here. Read input from STDIN. Print output to STDOUT
+# Selecting standard input
+con <- file('stdin', open='r')
+#print(con)
+#A connection with                    
+#description "stdin" 
+#class       "file"  
+#mode        "r"     
+#text        "text"  
+#opened      "opened"
+#can read    "yes"   
+#can write   "no"    
+
+# We don't need the first input 
+data_line <- readLines(con)[[2]] #readlines for reading lines of a text file
+#print(data_line)
+#[1] "64630 11735 14216 99233 14470 4978 73429 38120 51135 67060"
+
+# splitting the data into individual string
+split_data <- strsplit(data_line, " ")
+#print(split_data)
+#[[1]]
+#[1] "64630" "11735" "14216" "99233" "14470" "4978"  "73429" "38120" "51135"
+#[10] "67060"
+
+# String to integer conversion
+data <- as.numeric(unlist(split_data))
+#print(data)
+# [1] 64630 11735 14216 99233 14470  4978 73429 38120 51135 67060
+
+# get mode function
+getmode <- function(v) {
+   v <- sort(v)
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+mean <- mean(data)
+median <- median(data)
+mode <- getmode(data)
+
+cat(mean,median,mode,sep = "\n")
+
+
+
+#------------------------------------------------------------------------------------------
+
 
 data<- scan("/dev/stdin")
 #print(data) 10 64630 11735 14216 99233 14470  4978 73429 38120 51135 67060
